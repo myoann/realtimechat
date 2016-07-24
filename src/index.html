@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/plugins.js"></script>
+        <script src="js/lodash.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/jquery-3.1.0.min.js"></script>
+        <!-- PubNub library -->
+        <script src="js/pubnub-3.15.2.min.js"></script>
+        <!-- PubNub AngularJS Service -->
+        <script src="js/pubnub-angular-3.2.1.min.js"></script>
+
+        <script src="scripts/controllers/main.js"></script>
+
+    </head>
+    <body ng-app="app" ng-controller="ChatCtrl">
+        <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <ul class="chat">
+            <li ng-repeat="message in messages" ng-class="{'self': message.sender_uuid == uuid, 'other': message.sender_uuid != uuid}">
+                    <img src="{{avatarUrl(message.sender_uuid)}}" alt="{{message.sender_uuid}}" class="avatar">
+                    <div class="msg">
+                        <p>{{ message.content }}</p>
+                        <time>{{ message.date | date:"h:mm"}}</time>
+                    </div>
+            </li>
+        </ul>
+
+        <footer class="teal">
+            <form ng-submit="sendMessage()" class="container">
+                <div class="row">
+                    <div class="input-field col s10">
+                        <i class="prefix mdi-communication-chat"></i>
+                        <input ng-model="messageContent" class="textarea" type="text" placeholder="Type here!"/><div class="emojis" back-img="{{avatarUrl(uuid)}}"></div>
+                    </div>
+                </div>
+            </form>
+        </footer>
+    </body>
+</html>
