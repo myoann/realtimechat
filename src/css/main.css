@@ -23,7 +23,7 @@ a{
     right: 0px;
     width: 100%;
     height: 50px;
-    background: rgba(82,179,217,0.9);
+    background: rgba(82,179,217,1);
     z-index: 100;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -54,11 +54,21 @@ a{
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
-    margin-left: 15px;
 }
-.back:active {
-    background: rgba(255,255,255,0.2);
+.settings {
+    position: relative;
+    float:right;
+    width: 60px;
+    height: 50px;
+    top: -8px;
+    left: 0px;
+    color: #fff;
+    line-height: 50px;
+    font-size: 30px;
+    cursor: pointer;
 }
+
+
 .name{
     position: absolute;
     top: 3px;
@@ -87,7 +97,7 @@ a{
     background: none;
     margin: 0;
     padding: 0 0 50px 0;
-    margin-top: 60px;
+    margin-top: 80px;
     margin-bottom: 10px;
 }
 .chat li {
@@ -304,3 +314,9 @@ input.textarea {
 .emojis:active {
     opacity: 0.9;
 }
+
+.menuSettings .md-menu-settings {
+    padding: 24px; }
+
+.menuSettings .menu-settings-container {
+    min-height: 200px; }

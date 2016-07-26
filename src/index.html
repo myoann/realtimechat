@@ -10,11 +10,19 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
         <link rel="stylesheet" href="css/main.css">
+        <!-- Angular Material style sheet -->
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
 
         <script src="js/plugins.js"></script>
         <script src="js/lodash.min.js"></script>
-        <script src="js/angular.min.js"></script>
         <script src="js/jquery-3.1.0.min.js"></script>
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
         <!-- PubNub library -->
         <script src="js/pubnub-3.15.2.min.js"></script>
         <!-- PubNub AngularJS Service -->
@@ -23,10 +31,47 @@
         <script src="js/controllers/main.js"></script>
 
     </head>
-    <body ng-app="app" ng-controller="ChatCtrl">
+    <body ng-app="app" ng-controller="ChatCtrl as ctrl">
         <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+
+        <div class="menu">
+            <div class="back"><img ng-src="{{avatarUrl(uuid)}}" draggable="false"/></div>
+            <div class="name">Anonymous #{{uuid}}</div>
+            <div class="last"></div>
+
+            <md-menu class="settings">
+                <button class="settings-button" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+                    <i class="fa fa-cog"></i>
+                </button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-click="ctrl.redial($event)">
+                            <i class="fa  fa-pencil-square-o">   Enter new subject</i>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button>
+                            <i class="fa fa-user">   Change your username</i>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="ctrl.redial($event)">
+                            <i class="fa fa-eraser">   Clear chat</i>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-click="ctrl.checkVoicemail()">
+                            <i class="fa  fa-info-circle">   About</i>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+
+        </div>
         <ul class="chat">
             <li ng-repeat="message in messages" ng-class="{'self': message.sender_uuid == uuid, 'other': message.sender_uuid != uuid}">
                     <img src="{{avatarUrl(message.sender_uuid)}}" alt="{{message.sender_uuid}}" class="avatar">
