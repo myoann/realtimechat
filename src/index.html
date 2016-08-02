@@ -36,11 +36,13 @@
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <!-- Header -->
         <div class="menu">
             <div class="back"><img ng-src="{{avatarUrl(uuid)}}" draggable="false"/></div>
             <div class="name">Anonymous #{{uuid}}</div>
             <div class="last"></div>
 
+            <!-- List of settings -->
             <md-menu class="settings">
                 <button class="settings-button" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
                     <i class="fa fa-cog"></i>
@@ -69,9 +71,9 @@
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
-
-
         </div>
+
+        <!-- All the content of the chat -->
         <ul class="chat">
             <li ng-repeat="message in messages" ng-class="{'self': message.sender_uuid == uuid, 'other': message.sender_uuid != uuid}">
                     <img src="{{avatarUrl(message.sender_uuid)}}" alt="{{message.sender_uuid}}" class="avatar">
@@ -82,6 +84,7 @@
             </li>
         </ul>
 
+        <!-- The Message part, where the user can type a text -->
         <footer class="teal">
             <form ng-submit="sendMessage()" class="container">
                 <div class="row">

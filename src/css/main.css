@@ -68,6 +68,13 @@ a{
     cursor: pointer;
 }
 
+.settings-button {
+    border: none;
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
 
 .name{
     position: absolute;
